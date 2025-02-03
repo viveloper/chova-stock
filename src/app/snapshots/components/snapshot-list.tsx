@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Snapshot } from "@/app/snapshots/page";
+import { Snapshot } from "@/app/api/snapshots/route";
 
 export function SnapshotList({ snapshots }: { snapshots: Snapshot[] }) {
   const router = useRouter();
