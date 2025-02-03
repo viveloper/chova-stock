@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { PortfolioTable } from "@/app/snapshots/[id]/components/portfolio-table";
+import { TickerList } from "@/app/snapshots/[id]/components/ticker-list";
 import { Ticker } from "@/app/api/snapshots/[id]/route";
 
 export default async function Page() {
@@ -13,7 +13,7 @@ export default async function Page() {
           <div className="text-xl">2025-01-28</div>
           <Button>종목 추가</Button>
         </div>
-        <PortfolioTable tickers={tickers} />
+        <TickerList tickers={tickers} />
       </div>
     </div>
   );

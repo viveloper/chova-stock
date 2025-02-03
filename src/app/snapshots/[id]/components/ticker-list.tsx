@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/table";
 import { Ticker } from "@/app/api/snapshots/[id]/route";
 
-export function PortfolioTable({ tickers }: { tickers: Ticker[] }) {
+export function TickerList({ tickers }: { tickers: Ticker[] }) {
   return (
     <Table>
       <TableHeader>
