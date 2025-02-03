@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Ticker } from "@/app/snapshots/[id]/page";
+import { Ticker } from "@/app/api/snapshots/[id]/route";
 
 export function PortfolioTable({ tickers }: { tickers: Ticker[] }) {
   return (
