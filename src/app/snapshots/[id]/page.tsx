@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { TickerList } from "@/app/snapshots/[id]/components/ticker-list";
 import { Ticker } from "@/app/api/snapshots/[id]/route";
+import { APP_ENV } from "@/env";
 
 export default async function Page() {
-  const data = await fetch("http://localhost:3000/api/snapshots/1");
+  const data = await fetch(`${APP_ENV.API_URL}/api/snapshots/1`);
   const tickers: Ticker[] = await data.json();
 
   return (

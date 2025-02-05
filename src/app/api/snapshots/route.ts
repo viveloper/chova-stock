@@ -34,3 +34,8 @@ export async function GET() {
   await sleep(500);
   return Response.json(data.snapshots);
 }
+
+export async function POST() {
+  await sleep(500);
+  return Response.json(data.snapshots);
+}
