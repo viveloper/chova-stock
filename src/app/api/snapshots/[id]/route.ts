@@ -1,4 +1,5 @@
 import { sleep } from "@/lib/sleep";
+import { NextRequest } from "next/server";
 
 export type SnapshotDetail = {
   id: number;
@@ -105,7 +106,11 @@ const data: SnapshotDetail = {
   ],
 };
 
-export async function GET() {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  const id = (await params).id;
   await sleep(500);
-  return Response.json(data);
+  return Response.json({ ...data, id });
 }
