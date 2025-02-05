@@ -21,7 +21,7 @@ export type Ticker = {
   weight: number;
 };
 
-const data: SnapshotDetail = {
+const DATA: SnapshotDetail = {
   id: 1,
   name: "2025-01-28",
   tickers: [
@@ -112,5 +112,5 @@ export async function GET(
 ) {
   const id = (await params).id;
   await sleep(500);
-  return Response.json({ ...data, id });
+  return Response.json({ ...DATA, id });
 }
