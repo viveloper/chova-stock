@@ -1,8 +1,15 @@
 import { sleep } from "@/lib/sleep";
 
+export type SnapshotDetail = {
+  id: number;
+  name: string;
+  tickers: Ticker[];
+};
+
 export type Ticker = {
   category: string;
   ticker: string;
+  description: string;
   quantity: number;
   purchasePrice: number;
   purchaseAmount: number;
@@ -13,11 +20,14 @@ export type Ticker = {
   weight: number;
 };
 
-const data: { tickers: Ticker[] } = {
+const data: SnapshotDetail = {
+  id: 1,
+  name: "2025-01-28",
   tickers: [
     {
       category: "채권",
       ticker: "IEF",
+      description: "",
       quantity: 3,
       purchasePrice: 222.108,
       purchaseAmount: 1515.832,
@@ -30,6 +40,7 @@ const data: { tickers: Ticker[] } = {
     {
       category: "배당",
       ticker: "SCHD",
+      description: "",
       quantity: 5,
       purchasePrice: 222.108,
       purchaseAmount: 1515.832,
@@ -42,6 +53,7 @@ const data: { tickers: Ticker[] } = {
     {
       category: "배당",
       ticker: "VNQ",
+      description: "",
       quantity: 16,
       purchasePrice: 222.108,
       purchaseAmount: 1515.832,
@@ -54,6 +66,7 @@ const data: { tickers: Ticker[] } = {
     {
       category: "성장",
       ticker: "AAPL",
+      description: "",
       quantity: 22,
       purchasePrice: 222.108,
       purchaseAmount: 1515.832,
@@ -66,6 +79,7 @@ const data: { tickers: Ticker[] } = {
     {
       category: "성장",
       ticker: "QQQM",
+      description: "",
       quantity: 8,
       purchasePrice: 222.108,
       purchaseAmount: 1515.832,
@@ -78,6 +92,7 @@ const data: { tickers: Ticker[] } = {
     {
       category: "성장",
       ticker: "GOOGL",
+      description: "",
       quantity: 11,
       purchasePrice: 222.108,
       purchaseAmount: 1515.832,
@@ -92,5 +107,5 @@ const data: { tickers: Ticker[] } = {
 
 export async function GET() {
   await sleep(500);
-  return Response.json(data.tickers);
+  return Response.json(data);
 }
