@@ -1,11 +1,12 @@
 import { sleep } from "@/lib/sleep";
+import { NextRequest } from "next/server";
 
 export type Snapshot = {
   id: number;
   name: string;
 };
 
-const data: { snapshots: Snapshot[] } = {
+const DATA: { snapshots: Snapshot[] } = {
   snapshots: [
     {
       id: 5,
@@ -32,10 +33,13 @@ const data: { snapshots: Snapshot[] } = {
 
 export async function GET() {
   await sleep(500);
-  return Response.json(data.snapshots);
+  return Response.json(DATA.snapshots);
 }
 
-export async function POST() {
+export async function POST(request: NextRequest) {
+  const body: Omit<Snapshot, "id"> = await request.json();
+  // TODO: register snapshot
+  const newSnapshot = { ...body, id: 1000 };
   await sleep(500);
-  return Response.json(data.snapshots);
+  return Response.json(newSnapshot);
 }
