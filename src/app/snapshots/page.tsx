@@ -4,7 +4,9 @@ import { Snapshot } from "@/app/api/snapshots/route";
 import { APP_ENV } from "@/env";
 
 export default async function Page() {
-  const data = await fetch(`${APP_ENV.API_URL}/snapshots`);
+  const data = await fetch(`${APP_ENV.API_URL}/snapshots`, {
+    cache: "no-store",
+  });
   const snapshots: Snapshot[] = await data.json();
 
   return (
