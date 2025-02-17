@@ -1,7 +1,7 @@
 import { AddSnapshot } from "@/app/snapshots/components/add-snapshot";
 import { SnapshotList } from "@/app/snapshots/components/snapshot-list";
-import { Snapshot } from "@/app/api/snapshots/route";
 import { APP_ENV } from "@/env";
+import { Snapshot } from "@/app/api/snapshots/types";
 
 export default async function Page() {
   const data = await fetch(`${APP_ENV.API_URL}/snapshots`, {

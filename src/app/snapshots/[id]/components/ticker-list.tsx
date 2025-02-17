@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Ticker } from "@/app/api/snapshots/[id]/route";
+import { Ticker } from "@/app/api/snapshots/types";
 
 export function TickerList({ tickers }: { tickers: Ticker[] }) {
   return (

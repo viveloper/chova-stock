@@ -1,45 +1,39 @@
-import { sleep } from "@/lib/sleep";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { Snapshot } from "@/app/api/snapshots/types";
+import { getDB } from "@/lib/db";
 
-export type Snapshot = {
-  id: number;
-  name: string;
-};
+const db = getDB();
 
-const DATA: { snapshots: Snapshot[] } = {
-  snapshots: [
-    {
-      id: 5,
-      name: "2025-01-28",
-    },
-    {
-      id: 4,
-      name: "2024-12-31",
-    },
-    {
-      id: 3,
-      name: "2024-11-30",
-    },
-    {
-      id: 2,
-      name: "2024-10-28",
-    },
-    {
-      id: 1,
-      name: "2024-09-30",
-    },
-  ],
-};
-
+// 📌 스냅샷 목록 조회 (GET /snapshots)
 export async function GET() {
-  await sleep(500);
-  return Response.json(DATA.snapshots);
+  try {
+    return NextResponse.json(db.data.snapshots);
+  } catch {
+    return NextResponse.json(
+      { error: "Failed to fetch snapshots" },
+      { status: 500 },
+    );
+  }
 }
 
-export async function POST(request: NextRequest) {
-  const body: Omit<Snapshot, "id"> = await request.json();
-  // TODO: register snapshot
-  const newSnapshot = { ...body, id: 1000 };
-  await sleep(500);
-  return Response.json(newSnapshot);
+// 📌 스냅샷 추가 (POST /snapshots)
+export async function POST(req: NextRequest) {
+  try {
+    const { name } = await req.json();
+    const newSnapshot: Snapshot = {
+      id: Date.now(), // 간단한 고유 ID 생성
+      name,
+      tickers: [],
+    };
+
+    db.data.snapshots.push(newSnapshot);
+    await db.write();
+
+    return NextResponse.json(newSnapshot, { status: 201 });
+  } catch {
+    return NextResponse.json(
+      { error: "Failed to save snapshot" },
+      { status: 500 },
+    );
+  }
 }
