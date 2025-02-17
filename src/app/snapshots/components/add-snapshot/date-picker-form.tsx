@@ -18,12 +18,14 @@ const FormSchema = z.object({
   }),
 });
 
+type FormState = z.infer<typeof FormSchema>;
+
 export function DatePickerForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
-  const onSubmit = (data: z.infer<typeof FormSchema>) => {
+  const onSubmit = (data: FormState) => {
     toast({
       title: "You submitted the following values:",
       description: (
