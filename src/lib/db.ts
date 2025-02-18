@@ -9,8 +9,8 @@ type Database = {
 const defaultData: Database = {
   snapshots: [
     {
-      id: 1,
-      name: "2025-01-28",
+      id: 1739888702422,
+      name: "2025-02-20",
       tickers: [
         {
           category: "채권",

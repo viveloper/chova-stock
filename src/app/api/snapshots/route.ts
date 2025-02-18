@@ -7,7 +7,11 @@ const db = getDB();
 // 📌 스냅샷 목록 조회 (GET /snapshots)
 export async function GET() {
   try {
-    return NextResponse.json(db.data.snapshots);
+    return NextResponse.json(
+      db.data.snapshots
+        .toSorted((a, b) => b.id - a.id)
+        .toSorted((a, b) => b.name.localeCompare(a.name)),
+    );
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch snapshots" },

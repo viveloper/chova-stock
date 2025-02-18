@@ -13,7 +13,7 @@ export function SnapshotList({ snapshots }: { snapshots: Snapshot[] }) {
             className="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer"
             onClick={() => router.push("/snapshots/" + snapshot.id)}
           >
-            {snapshot.name}
+            {`${snapshot.name} (${snapshot.id})`}
           </span>
         </li>
       ))}
