@@ -37,48 +37,45 @@ export const SearchFilterForm = () => {
   };
 
   return (
-    <div>
-      <div>SearchFilter</div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="startDate"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormLabel>시작일</FormLabel>
-                <DatePicker
-                  value={field.value}
-                  onChange={field.onChange}
-                  fullWidth
-                />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="endDate"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormLabel>마지막일</FormLabel>
-                <DatePicker
-                  value={field.value}
-                  onChange={field.onChange}
-                  fullWidth
-                />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="startDate"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel>시작일</FormLabel>
+              <DatePicker
+                value={field.value}
+                onChange={field.onChange}
+                fullWidth
+              />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="endDate"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel>마지막일</FormLabel>
+              <DatePicker
+                value={field.value}
+                onChange={field.onChange}
+                fullWidth
+              />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <div className="text-right">
-            <Button className="w-16" type="submit">
-              검색
-            </Button>
-          </div>
-        </form>
-      </Form>
-    </div>
+        <div className="text-right">
+          <Button className="w-16" type="submit">
+            검색
+          </Button>
+        </div>
+      </form>
+    </Form>
   );
 };
