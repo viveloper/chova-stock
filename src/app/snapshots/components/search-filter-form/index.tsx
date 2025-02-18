@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import queryString from "query-string";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -12,6 +13,7 @@ import {
 } from "@/components/ui/form";
 import { DatePicker } from "@/components/date-picker";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   startDate: z.date().optional(),
@@ -24,9 +26,14 @@ export const SearchFilterForm = () => {
   const form = useForm<FormState>({
     resolver: zodResolver(FormSchema),
   });
+  const router = useRouter();
 
-  const onSubmit = async (data: FormState) => {
-    console.log(data);
+  const onSubmit = (data: FormState) => {
+    const qs = queryString.stringify({
+      startDate: data.startDate?.toISOString(),
+      endDate: data.endDate?.toISOString(),
+    });
+    router.push(qs ? `?${qs}` : "", { scroll: false });
   };
 
   return (
