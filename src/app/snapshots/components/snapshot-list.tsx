@@ -1,21 +1,23 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import { Snapshot } from "@/app/api/snapshots/types";
+import queryString from "query-string";
+import { APP_ENV } from "@/env";
+import { SnapshotItem } from "@/app/snapshots/components/snapshot-item";
 
-export function SnapshotList({ snapshots }: { snapshots: Snapshot[] }) {
-  const router = useRouter();
+export async function SnapshotList({
+  query,
+}: {
+  query: {
+    startDate: string | string[] | undefined;
+    endDate: string | string[] | undefined;
+  };
+}) {
+  const snapshots = await fetchSnapshots({ query });
   return (
     <ul className="text-lg space-y-1">
       {snapshots.length > 0 ? (
         snapshots.map((snapshot) => (
           <li key={snapshot.id}>
-            <span
-              className="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer"
-              onClick={() => router.push("/snapshots/" + snapshot.id)}
-            >
-              {`${snapshot.name} (${snapshot.id})`}
-            </span>
+            <SnapshotItem snapshot={snapshot} />
           </li>
         ))
       ) : (
@@ -23,4 +25,23 @@ export function SnapshotList({ snapshots }: { snapshots: Snapshot[] }) {
       )}
     </ul>
   );
+}
+
+async function fetchSnapshots({
+  query: { startDate, endDate },
+}: {
+  query: {
+    startDate: string | string[] | undefined;
+    endDate: string | string[] | undefined;
+  };
+}) {
+  const qs = queryString.stringify({ startDate, endDate });
+  const data = await fetch(
+    `${APP_ENV.API_URL}/snapshots${qs ? `?${qs}` : ""}`,
+    {
+      cache: "no-store",
+    },
+  );
+  const snapshots: Snapshot[] = await data.json();
+  return snapshots;
 }
