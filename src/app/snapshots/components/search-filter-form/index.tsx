@@ -14,6 +14,7 @@ import {
 import { DatePicker } from "@/components/date-picker";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 const FormSchema = z.object({
   startDate: z.date().optional(),
@@ -27,13 +28,16 @@ export const SearchFilterForm = () => {
     resolver: zodResolver(FormSchema),
   });
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const onSubmit = (data: FormState) => {
-    const qs = queryString.stringify({
-      startDate: data.startDate?.toISOString(),
-      endDate: data.endDate?.toISOString(),
+    startTransition(() => {
+      const qs = queryString.stringify({
+        startDate: data.startDate?.toISOString(),
+        endDate: data.endDate?.toISOString(),
+      });
+      router.push(qs ? `?${qs}` : "", { scroll: false });
     });
-    router.push(qs ? `?${qs}` : "", { scroll: false });
   };
 
   return (
@@ -71,8 +75,8 @@ export const SearchFilterForm = () => {
         />
 
         <div className="text-right">
-          <Button className="w-16" type="submit">
-            검색
+          <Button className="w-20" type="submit" disabled={isPending}>
+            {isPending ? "로딩..." : "검색"}
           </Button>
         </div>
       </form>

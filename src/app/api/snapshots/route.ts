@@ -2,11 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { Snapshot } from "@/app/api/snapshots/types";
 import { getDB } from "@/lib/db";
 import { startOfDay } from "date-fns";
+import { sleep } from "@/lib/sleep";
 
 const db = getDB();
 
 // 📌 스냅샷 목록 조회 (GET /snapshots)
 export async function GET(request: NextRequest) {
+  await sleep(1000); // delay 1s
+
   const searchParams = request.nextUrl.searchParams;
   const startDate = searchParams.get("startDate");
   const endDate = searchParams.get("endDate");

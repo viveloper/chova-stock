@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { AddSnapshot } from "@/app/snapshots/components/add-snapshot";
 import { SnapshotList } from "@/app/snapshots/components/snapshot-list";
 import { APP_ENV } from "@/env";
@@ -24,19 +25,32 @@ async function getSnapshots({
   return snapshots;
 }
 
+async function SnapshotListWrapper({
+  startDate,
+  endDate,
+}: {
+  startDate: string | string[] | undefined;
+  endDate: string | string[] | undefined;
+}) {
+  const snapshots = await getSnapshots({ query: { startDate, endDate } });
+  return <SnapshotList snapshots={snapshots} />;
+}
+
 export default async function Page({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { startDate, endDate } = await searchParams;
-  const snapshots = await getSnapshots({ query: { startDate, endDate } });
+
   return (
     <div className="p-4">
       <div className="space-y-4">
         <AddSnapshot />
         <SearchFilterForm />
-        <SnapshotList snapshots={snapshots} />
+        <Suspense fallback={<p>Loading snapshots...</p>}>
+          <SnapshotListWrapper startDate={startDate} endDate={endDate} />
+        </Suspense>
       </div>
     </div>
   );
