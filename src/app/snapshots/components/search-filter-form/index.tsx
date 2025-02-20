@@ -74,11 +74,9 @@ export const SearchFilterForm = () => {
           )}
         />
 
-        <div className="text-right">
-          <Button className="w-20" type="submit" disabled={isPending}>
-            {isPending ? "로딩..." : "검색"}
-          </Button>
-        </div>
+        <Button type="submit" disabled={isPending}>
+          {isPending ? "로딩..." : "검색"}
+        </Button>
       </form>
     </Form>
   );
