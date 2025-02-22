@@ -13,8 +13,8 @@ const defaultData: Database = {
       name: "2025-02-20",
       tickers: [
         {
+          name: "IEF",
           category: "채권",
-          ticker: "IEF",
           description: "",
           quantity: 3,
           purchasePrice: 222.108,
@@ -27,7 +27,7 @@ const defaultData: Database = {
         },
         {
           category: "배당",
-          ticker: "SCHD",
+          name: "SCHD",
           description: "",
           quantity: 5,
           purchasePrice: 222.108,
@@ -40,7 +40,7 @@ const defaultData: Database = {
         },
         {
           category: "배당",
-          ticker: "VNQ",
+          name: "VNQ",
           description: "",
           quantity: 16,
           purchasePrice: 222.108,
@@ -53,7 +53,7 @@ const defaultData: Database = {
         },
         {
           category: "성장",
-          ticker: "AAPL",
+          name: "AAPL",
           description: "",
           quantity: 22,
           purchasePrice: 222.108,
@@ -66,7 +66,7 @@ const defaultData: Database = {
         },
         {
           category: "성장",
-          ticker: "QQQM",
+          name: "QQQM",
           description: "",
           quantity: 8,
           purchasePrice: 222.108,
@@ -79,7 +79,7 @@ const defaultData: Database = {
         },
         {
           category: "성장",
-          ticker: "GOOGL",
+          name: "GOOGL",
           description: "",
           quantity: 11,
           purchasePrice: 222.108,

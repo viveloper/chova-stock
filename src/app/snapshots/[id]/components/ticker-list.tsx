@@ -30,7 +30,7 @@ export function TickerList({ tickers }: { tickers: Ticker[] }) {
         {tickers.map((item, index) => (
           <TableRow key={index}>
             <TableCell>{item.category}</TableCell>
-            <TableCell>{item.ticker}</TableCell>
+            <TableCell>{item.name}</TableCell>
             <TableCell>{item.quantity}</TableCell>
             <TableCell>${item.purchasePrice.toFixed(3)}</TableCell>
             <TableCell>${item.purchaseAmount.toFixed(3)}</TableCell>

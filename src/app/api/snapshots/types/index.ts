@@ -5,8 +5,8 @@ export type Snapshot = {
 };
 
 export type Ticker = {
+  name: string;
   category: string;
-  ticker: string;
   description: string;
   quantity: number;
   purchasePrice: number;

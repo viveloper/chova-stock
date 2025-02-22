@@ -18,3 +18,11 @@ Content-Type: application/json
 ### DELETE 요청 : 삭제
 DELETE http://localhost:3000/api/snapshots/1
 Accept: application/json
+
+### PUT 요청 : 수정
+PUT http://localhost:3000/api/snapshots/1739889036395/tickers/TEST
+Content-Type: application/json
+
+{
+  "name": "TEST"
+}
