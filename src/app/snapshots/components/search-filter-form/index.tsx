@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { DatePicker } from "@/components/date-picker";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 
 const FormSchema = z.object({
@@ -24,11 +24,19 @@ const FormSchema = z.object({
 type FormState = z.infer<typeof FormSchema>;
 
 export const SearchFilterForm = () => {
-  const form = useForm<FormState>({
-    resolver: zodResolver(FormSchema),
-  });
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const searchParams = useSearchParams();
+
+  const startDate = searchParams.get("startDate");
+  const endDate = searchParams.get("endDate");
+  const form = useForm<FormState>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      startDate: startDate ? new Date(startDate) : undefined,
+      endDate: endDate ? new Date(endDate) : undefined,
+    },
+  });
 
   const onSubmit = (data: FormState) => {
     startTransition(() => {
