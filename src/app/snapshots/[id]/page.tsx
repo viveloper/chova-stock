@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { TickerList } from "@/app/snapshots/[id]/components/ticker-list";
 import { APP_ENV } from "@/env";
 import { Snapshot } from "@/app/api/snapshots/types";
+import { AddTicker } from "@/app/snapshots/[id]/components/add-ticker";
 
 export default async function Page({
   params,
@@ -18,7 +18,7 @@ export default async function Page({
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="text-xl">{`${snapshot.name}(${snapshot.id})`}</div>
-          <Button>종목 추가</Button>
+          <AddTicker />
         </div>
         <TickerList tickers={snapshot.tickers} />
       </div>
