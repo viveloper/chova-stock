@@ -20,9 +20,13 @@ DELETE http://localhost:3000/api/snapshots/1
 Accept: application/json
 
 ### PUT 요청 : 수정
-PUT http://localhost:3000/api/snapshots/1739889036395/tickers/TEST
+PUT http://localhost:3000/api/snapshots/1739889036395/tickers/GOOGL
 Content-Type: application/json
 
 {
-  "name": "TEST"
+  "category": "성장",
+  "name": "GOOGL",
+  "quantity": 11,
+  "purchasePrice": 222.108,
+  "currentPrice" : 223.112
 }

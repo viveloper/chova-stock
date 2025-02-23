@@ -23,7 +23,6 @@ export function TickerList({ tickers }: { tickers: Ticker[] }) {
           <TableHead>평가금액</TableHead>
           <TableHead>평가손익</TableHead>
           <TableHead>수익률</TableHead>
-          <TableHead>비중</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -38,7 +37,6 @@ export function TickerList({ tickers }: { tickers: Ticker[] }) {
             <TableCell>${item.valuationAmount.toFixed(3)}</TableCell>
             <TableCell>${item.valuationGainLoss.toFixed(2)}</TableCell>
             <TableCell>{item.profitRate.toFixed(2)}%</TableCell>
-            <TableCell>{item.weight.toFixed(2)}%</TableCell>
           </TableRow>
         ))}
       </TableBody>
@@ -49,7 +47,6 @@ export function TickerList({ tickers }: { tickers: Ticker[] }) {
           <TableCell colSpan={2}>$2875.244</TableCell>
           <TableCell>$2875.244</TableCell>
           <TableCell colSpan={2}>$2875.244</TableCell>
-          <TableCell>100%</TableCell>
         </TableRow>
       </TableFooter>
     </Table>

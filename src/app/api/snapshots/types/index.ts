@@ -5,15 +5,18 @@ export type Snapshot = {
 };
 
 export type Ticker = {
-  name: string;
   category: string;
-  description: string;
+  name: string;
   quantity: number;
   purchasePrice: number;
-  purchaseAmount: number;
   currentPrice: number;
+  purchaseAmount: number;
   valuationAmount: number;
   valuationGainLoss: number;
   profitRate: number;
-  weight: number;
 };
+
+export type PutSnapshotRequest = Pick<
+  Ticker,
+  "category" | "name" | "quantity" | "purchasePrice" | "currentPrice"
+>;

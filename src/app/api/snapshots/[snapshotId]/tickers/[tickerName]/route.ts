@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDB } from "@/lib/db";
 import { sleep } from "@/lib/sleep";
-import { Ticker } from "@/app/api/snapshots/types";
+import { PutSnapshotRequest, Ticker } from "@/app/api/snapshots/types";
 
 const db = getDB();
 
@@ -20,20 +20,23 @@ export async function PUT(
   }
 
   const ticker = snapshot.tickers.find((t) => t.name === tickerName);
-  // const data: Ticker = await request.json();
-  // TODO: create newTicker from request data
+  const reqData: PutSnapshotRequest = await request.json();
+  const { category, name, quantity, purchasePrice, currentPrice } = reqData;
+  const purchaseAmount = quantity * purchasePrice;
+  const valuationAmount = quantity * currentPrice;
+  const valuationGainLoss = valuationAmount - purchaseAmount;
+  const profitRate = (valuationGainLoss / purchaseAmount) * 100;
+
   const newTicker: Ticker = {
-    category: "테스트",
-    name: "TEST",
-    description: "",
-    quantity: 11,
-    purchasePrice: 222.108,
-    purchaseAmount: 1515.832,
-    currentPrice: 222.112,
-    valuationAmount: 1583.628,
-    valuationGainLoss: 68.42,
-    profitRate: 1.13,
-    weight: 12.51,
+    category, // 구분
+    name, // 종목
+    quantity, // 수량
+    purchasePrice, // 매입단가
+    currentPrice, // 현재가
+    purchaseAmount, // 매입금액
+    valuationAmount, // 평가금액
+    valuationGainLoss, // 평가손익
+    profitRate, // 수익률
   };
 
   if (!ticker) {
