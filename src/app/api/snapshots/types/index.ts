@@ -1,10 +1,19 @@
 export type Snapshot = {
   id: number;
   name: string;
-  tickers: Ticker[];
+  ticker: Ticker;
 };
 
 export type Ticker = {
+  items: TickerItem[];
+  totalQuantity: number;
+  totalPurchaseAmount: number;
+  totalValuationAmount: number;
+  totalValuationGainLoss: number;
+  totalProfitRate: number;
+};
+
+export type TickerItem = {
   category: string;
   name: string;
   quantity: number;
@@ -16,7 +25,9 @@ export type Ticker = {
   profitRate: number;
 };
 
-export type PutSnapshotRequest = Pick<
-  Ticker,
+export type PostTickerRequest = Pick<
+  TickerItem,
   "category" | "name" | "quantity" | "purchasePrice" | "currentPrice"
 >;
+
+export type PutTickerRequest = PostTickerRequest;

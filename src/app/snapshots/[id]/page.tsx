@@ -20,7 +20,7 @@ export default async function Page({
           <div className="text-xl">{`${snapshot.name}(${snapshot.id})`}</div>
           <AddTicker />
         </div>
-        <TickerList tickers={snapshot.tickers} />
+        <TickerList ticker={snapshot.ticker} />
       </div>
     </div>
   );

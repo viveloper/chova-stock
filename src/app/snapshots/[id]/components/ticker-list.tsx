@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/table";
 import { Ticker } from "@/app/api/snapshots/types";
 
-export function TickerList({ tickers }: { tickers: Ticker[] }) {
+export function TickerList({ ticker }: { ticker: Ticker }) {
   return (
     <Table>
       <TableHeader>
@@ -26,9 +26,10 @@ export function TickerList({ tickers }: { tickers: Ticker[] }) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {tickers.map((item, index) => (
+        {ticker.items.map((item, index) => (
           <TableRow key={index}>
             <TableCell>{item.category}</TableCell>
+            {/* TODO: edit ticker */}
             <TableCell>{item.name}</TableCell>
             <TableCell>{item.quantity}</TableCell>
             <TableCell>${item.purchasePrice.toFixed(3)}</TableCell>
@@ -41,13 +42,13 @@ export function TickerList({ tickers }: { tickers: Ticker[] }) {
         ))}
       </TableBody>
       <TableFooter>
-        {/* TODO: calculate total values (client? server?) */}
         <TableRow>
           <TableCell colSpan={2}>합계</TableCell>
-          <TableCell colSpan={2}>77</TableCell>
-          <TableCell colSpan={2}>$2875.244</TableCell>
-          <TableCell>$2875.244</TableCell>
-          <TableCell colSpan={2}>$2875.244</TableCell>
+          <TableCell colSpan={2}>{ticker.totalQuantity}</TableCell>
+          <TableCell colSpan={2}>${ticker.totalPurchaseAmount}</TableCell>
+          <TableCell>${ticker.totalValuationAmount}</TableCell>
+          <TableCell>${ticker.totalValuationGainLoss}</TableCell>
+          <TableCell>{ticker.totalProfitRate}%</TableCell>
         </TableRow>
       </TableFooter>
     </Table>

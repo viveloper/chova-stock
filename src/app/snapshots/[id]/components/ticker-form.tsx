@@ -65,7 +65,7 @@ export function TickerForm() {
       const response = await fetch(
         `${APP_ENV.API_URL}/snapshots/${snapshotId}/tickers/${tickerName}`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },

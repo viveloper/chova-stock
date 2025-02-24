@@ -60,7 +60,14 @@ export async function POST(req: NextRequest) {
     const newSnapshot: Snapshot = {
       id: Date.now(), // 간단한 고유 ID 생성
       name,
-      tickers: [],
+      ticker: {
+        items: [],
+        totalQuantity: 0,
+        totalPurchaseAmount: 0,
+        totalValuationAmount: 0,
+        totalValuationGainLoss: 0,
+        totalProfitRate: 0,
+      },
     };
 
     db.data.snapshots.push(newSnapshot);
