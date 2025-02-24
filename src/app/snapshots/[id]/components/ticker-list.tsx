@@ -8,6 +8,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Ticker } from "@/app/api/snapshots/types";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function TickerList({ ticker }: { ticker: Ticker }) {
   return (
@@ -29,8 +35,21 @@ export function TickerList({ ticker }: { ticker: Ticker }) {
         {ticker.items.map((item, index) => (
           <TableRow key={index}>
             <TableCell>{item.category}</TableCell>
-            {/* TODO: edit ticker */}
-            <TableCell>{item.name}</TableCell>
+            {/* TODO: edit ticker (modal form) */}
+            <TableCell>
+              <TooltipProvider delayDuration={200}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">
+                      {item.name}
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>수정하려면 클릭하세요.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </TableCell>
             <TableCell>{item.quantity}</TableCell>
             <TableCell>${item.purchasePrice.toFixed(3)}</TableCell>
             <TableCell>${item.purchaseAmount.toFixed(3)}</TableCell>
