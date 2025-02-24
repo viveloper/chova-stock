@@ -15,7 +15,6 @@ import { Snapshot } from "@/app/api/snapshots/types";
 import { APP_ENV } from "@/env";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
-import { DialogClose } from "@/components/ui/dialog";
 
 const FormSchema = z.object({
   name: z.date({
@@ -43,7 +42,6 @@ export function SnapshotForm() {
       });
 
       if (!response.ok) {
-        alert(`HTTP error! Status: ${response.status}`);
         toast({
           title: "Error",
           variant: "destructive",
@@ -100,11 +98,10 @@ export function SnapshotForm() {
           )}
         />
         <div className="text-right">
-          <DialogClose asChild>
-            <Button className="w-16" type="submit">
-              추가
-            </Button>
-          </DialogClose>
+          {/* TODO: close modal */}
+          <Button className="w-16" type="submit">
+            추가
+          </Button>
         </div>
       </form>
     </Form>

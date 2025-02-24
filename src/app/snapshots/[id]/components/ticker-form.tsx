@@ -170,6 +170,7 @@ export function TickerForm() {
           )}
         />
         <div className="text-right">
+          {/* TODO: close modal */}
           <Button className="w-16" type="submit">
             추가
           </Button>

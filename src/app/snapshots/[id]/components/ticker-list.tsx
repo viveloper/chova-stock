@@ -41,6 +41,7 @@ export function TickerList({ tickers }: { tickers: Ticker[] }) {
         ))}
       </TableBody>
       <TableFooter>
+        {/* TODO: calculate total values (client? server?) */}
         <TableRow>
           <TableCell colSpan={2}>합계</TableCell>
           <TableCell colSpan={2}>77</TableCell>
