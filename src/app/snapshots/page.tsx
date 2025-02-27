@@ -33,7 +33,7 @@ export default async function Page({
 
   return (
     <div className="p-4">
-      <div className="max-w-[500px] min-w-[300px] space-y-4">
+      <div className="space-y-4">
         <AddSnapshot />
         <SearchFilterForm />
         <Suspense fallback={<p>Loading snapshots...</p>}>
